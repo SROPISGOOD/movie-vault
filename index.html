@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Vault</title>
+</head>
+
+<body style="background:#121212;color:white;font-family:Arial;padding:20px;">
+
+<h1>🎬 Movie Vault</h1>
+
+<h2>Add Movie</h2>
+
+<input id="title" placeholder="Movie Title"><br><br>
+
+<input id="release" type="date"><br><br>
+
+<input id="budget" placeholder="Budget"><br><br>
+
+<input id="collection" placeholder="Collection"><br><br>
+
+<input id="imdb" placeholder="IMDb Rating"><br><br>
+
+<input id="audience" placeholder="Audience Rating"><br><br>
+
+<button onclick="addMovie()">Save Movie</button>
+
+<hr>
+
+<h2>My Movies</h2>
+
+<div id="movies"></div>
+
+<script>
+
+let movies=[];
+
+function addMovie(){
+
+let movie={
+title:title.value,
+release:release.value,
+budget:budget.value,
+collection:collection.value,
+imdb:imdb.value,
+audience:audience.value
+};
+
+movies.push(movie);
+
+document.getElementById("movies").innerHTML+=`
+<div style="border:1px solid gray;padding:15px;margin:10px;">
+<h3>${movie.title}</h3>
+<p>📅 ${movie.release}</p>
+<p>💰 ${movie.budget}</p>
+<p>🌍 ${movie.collection}</p>
+<p>⭐ IMDb ${movie.imdb}</p>
+<p>🍿 Audience ${movie.audience}</p>
+</div>
+`;
+
+}
+
+</script>
+
+</body>
+</html>
