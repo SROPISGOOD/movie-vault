@@ -1,68 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Vault</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Vault</title>
+
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background:#121212;color:white;font-family:Arial;padding:20px;">
+<body>
+
+<div class="container">
 
 <h1>🎬 Movie Vault</h1>
 
-<h2>Add Movie</h2>
+<div class="form">
 
-<input id="title" placeholder="Movie Title"><br><br>
+<input type="text" id="poster" placeholder="Poster Image URL">
 
-<input id="release" type="date"><br><br>
+<input type="text" id="title" placeholder="Movie Title">
 
-<input id="budget" placeholder="Budget"><br><br>
+<input type="date" id="release">
 
-<input id="collection" placeholder="Collection"><br><br>
+<input type="text" id="budget" placeholder="Budget">
+<input type="text" id="imdb" placeholder="IMDb Rating">
 
-<input id="imdb" placeholder="IMDb Rating"><br><br>
+<input type="text" id="audience" placeholder="Audience Rating">
 
-<input id="audience" placeholder="Audience Rating"><br><br>
+<input type="text" id="runtime" placeholder="Runtime">
 
-<button onclick="addMovie()">Save Movie</button>
+<input type="text" id="cast" placeholder="Cast">
+
+<input type="text" id="director" placeholder="Director">
+
+<button onclick="addMovie()">Add Movie</button>
+
+</div>
 
 <hr>
 
-<h2>My Movies</h2>
-
 <div id="movies"></div>
-
-<script>
-
-let movies=[];
-
-function addMovie(){
-
-let movie={
-title:title.value,
-release:release.value,
-budget:budget.value,
-collection:collection.value,
-imdb:imdb.value,
-audience:audience.value
-};
-
-movies.push(movie);
-
-document.getElementById("movies").innerHTML+=`
-<div style="border:1px solid gray;padding:15px;margin:10px;">
-<h3>${movie.title}</h3>
-<p>📅 ${movie.release}</p>
-<p>💰 ${movie.budget}</p>
-<p>🌍 ${movie.collection}</p>
-<p>⭐ IMDb ${movie.imdb}</p>
-<p>🍿 Audience ${movie.audience}</p>
+<input type="text" id="collection" placeholder="Box Office Collection">
 </div>
-`;
 
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
