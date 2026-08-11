@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movie Vault</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Vault</title>
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🎬 Movie Vault</h1>
+  <h1>🎬 Movie Vault</h1>
 
-<div class="form">
+  <div class="form">
 
-<input type="text" id="poster" placeholder="Poster Image URL">
+    <input type="text" id="title" placeholder="Movie Title">
 
-<input type="text" id="title" placeholder="Movie Title">
+    <input type="date" id="release">
 
-<input type="date" id="release">
+    <input type="text" id="budget" placeholder="Budget">
 
-<input type="text" id="budget" placeholder="Budget">
-  <input type="text" id="collection" placeholder="Box Office Collection">
-<input type="text" id="imdb" placeholder="IMDb Rating">
+    <input type="text" id="collection" placeholder="Box Office Collection">
 
-<input type="text" id="audience" placeholder="Audience Rating">
+    <input type="text" id="imdb" placeholder="IMDb Rating">
 
-<input type="text" id="runtime" placeholder="Runtime">
+    <input type="text" id="audience" placeholder="Audience Rating">
 
-<input type="text" id="cast" placeholder="Cast">
+    <input type="text" id="runtime" placeholder="Runtime">
 
-<input type="text" id="director" placeholder="Director">
+    <input type="text" id="director" placeholder="Director">
 
-<button onclick="addMovie()">Add Movie</button>
+    <button onclick="addMovie()">Add Movie</button>
 
-</div>
+  </div>
 
-<hr>
+  <hr>
 
-<div id="movies"></div>
+  <div id="movies"></div>
+
 </div>
 
 <script src="script.js"></script>
