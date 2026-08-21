@@ -3,46 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Movie Vault</title>
 
-  <link rel="stylesheet" href="style.css">
+  <title>MovieHub</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    header {
+      background: #e50914;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .movie {
+      background: #222;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .movie img {
+      width: 150px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .movie-info h2 {
+      margin-top: 0;
+    }
+
+    .rating {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    button {
+      background: #e50914;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    button:hover {
+      background: #b20710;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <header>
+    <h1>🎬 MovieHub</h1>
+    <p>My Movie Database</p>
+  </header>
 
-  <h1>🎬 Movie Vault</h1>
+  <div class="container">
 
-  <div class="form">
+    <button onclick="showMovie()">Add Movie</button>
 
-    <input type="text" id="title" placeholder="Movie Title">
-
-    <input type="date" id="release">
-
-    <input type="text" id="budget" placeholder="Budget">
-
-    <input type="text" id="collection" placeholder="Box Office Collection">
-
-    <input type="text" id="imdb" placeholder="IMDb Rating">
-
-    <input type="text" id="audience" placeholder="Audience Rating">
-
-    <input type="text" id="runtime" placeholder="Runtime">
-
-    <input type="text" id="director" placeholder="Director">
-
-    <button onclick="addMovie()">Add Movie</button>
+    <div id="movies"></div>
 
   </div>
 
-  <hr>
+  <script>
 
-  <div id="movies"></div>
+    const movies = [
+      {
+        title: "Spider-Man: No Way Home",
+        release: "16 December 2021",
+        rating: "8.2/10",
+        budget: "$200M",
+        collection: "$1.9B",
+        poster: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
+      }
+    ];
 
-</div>
+    function displayMovies() {
 
-<script src="script.js"></script>
+      const movieContainer = document.getElementById("movies");
+
+      movieContainer.innerHTML = "";
+
+      movies.forEach(movie => {
+
+        movieContainer.innerHTML += `
+          <div class="movie">
+
+            <img src="${movie.poster}" alt="${movie.title}">
+
+            <div class="movie-info">
+
+              <h2>${movie.title}</h2>
+
+              <p>📅 Release: ${movie.release}</p>
+
+              <p class="rating">⭐ Rating: ${movie.rating}</p>
+
+              <p>💰 Budget: ${movie.budget}</p>
+
+              <p>🎟️ Box Office: ${movie.collection}</p>
+
+            </div>
+
+          </div>
+        `;
+
+      });
+
+    }
+
+    function showMovie() {
+
+      const title = prompt("Movie Title:");
+
+      if (!title) return;
+
+      const release = prompt("Release Date:");
+
+      const rating = prompt("IMDb Rating:");
+
+      const budget = prompt("Budget:");
+
+      const collection = prompt("Box Office Collection:");
+
+      const poster = prompt("Poster Image URL:");
+
+      movies.push({
+        title,
+        release,
+        rating,
+        budget,
+        collection,
+        poster
+      });
+
+      displayMovies();
+    }
+
+    displayMovies();
+
+  </script>
 
 </body>
 </html>
