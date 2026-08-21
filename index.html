@@ -1,53 +1,213 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movie Website</title>
+    <title>MovieHub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: white;
+        }
+
+        header {
+            background: #1c1c1c;
+            padding: 25px 50px;
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #f5c518;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .form {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .form h2 {
+            margin-top: 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            background: #262626;
+            border: 1px solid #444;
+            border-radius: 7px;
+            color: white;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .add {
+            background: #f5c518;
+            color: #111;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 7px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .movie {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #292929;
+        }
+
+        .movie h2 {
+            margin-top: 0;
+            color: #f5c518;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .detail {
+            background: #242424;
+            padding: 12px;
+            border-radius: 7px;
+        }
+
+        .review {
+            margin-top: 15px;
+            padding: 15px;
+            background: #242424;
+            border-radius: 7px;
+        }
+
+        .delete {
+            margin-top: 18px;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>🎬 Movie Website</h1>
+<header>
+    <h1>🎬 MovieHub</h1>
+</header>
 
-<h2>Add Movie</h2>
+<div class="container">
 
-<input id="title" placeholder="Title"><br><br>
-<input id="release" placeholder="Release Date"><br><br>
-<input id="budget" placeholder="Budget"><br><br>
-<input id="collection" placeholder="Collection"><br><br>
-<input id="imdb" placeholder="IMDb Rating"><br><br>
-<input id="audience" placeholder="Audience Rating"><br><br>
+    <div class="form">
 
-<textarea id="review" placeholder="Review"></textarea>
-<br><br>
+        <h2>Add Movie</h2>
 
-<button onclick="addMovie()">Add Movie</button>
+        <input id="title" placeholder="Movie Title">
+        <input id="release" placeholder="Release Date">
+        <input id="budget" placeholder="Budget">
+        <input id="collection" placeholder="Box Office Collection">
+        <input id="imdb" placeholder="IMDb Rating">
+        <input id="audience" placeholder="Audience Rating">
 
-<hr>
+        <textarea id="review" placeholder="Movie Review"></textarea>
 
-<div id="movies"></div>
+        <button class="add" onclick="addMovie()">+ Add Movie</button>
+
+    </div>
+
+    <h2>Movies</h2>
+
+    <div id="movies"></div>
+
+</div>
 
 <script>
 
 function addMovie() {
 
+    let title = document.getElementById("title").value;
+
+    if (title === "") {
+        alert("Please enter movie title");
+        return;
+    }
+
     let movie = document.createElement("div");
 
+    movie.className = "movie";
+
     movie.innerHTML = `
-        <h2>${document.getElementById("title").value}</h2>
+        <h2>${title}</h2>
 
-        <p>Release Date: ${document.getElementById("release").value}</p>
-        <p>Budget: ${document.getElementById("budget").value}</p>
-        <p>Collection: ${document.getElementById("collection").value}</p>
-        <p>IMDb Rating: ${document.getElementById("imdb").value}</p>
-        <p>Audience Rating: ${document.getElementById("audience").value}</p>
-        <p>Review: ${document.getElementById("review").value}</p>
+        <div class="details">
 
-        <button onclick="this.parentElement.remove()">Delete</button>
+            <div class="detail">
+                📅 Release Date<br>
+                ${document.getElementById("release").value}
+            </div>
 
-        <hr>
+            <div class="detail">
+                💰 Budget<br>
+                ${document.getElementById("budget").value}
+            </div>
+
+            <div class="detail">
+                🎟️ Collection<br>
+                ${document.getElementById("collection").value}
+            </div>
+
+            <div class="detail">
+                ⭐ IMDb Rating<br>
+                ${document.getElementById("imdb").value}
+            </div>
+
+            <div class="detail">
+                👥 Audience Rating<br>
+                ${document.getElementById("audience").value}
+            </div>
+
+        </div>
+
+        <div class="review">
+            <b>Review</b><br><br>
+            ${document.getElementById("review").value}
+        </div>
+
+        <button class="delete" onclick="this.parentElement.remove()">
+            Delete Movie
+        </button>
     `;
 
     document.getElementById("movies").appendChild(movie);
+
+    document.getElementById("title").value = "";
+    document.getElementById("release").value = "";
+    document.getElementById("budget").value = "";
+    document.getElementById("collection").value = "";
+    document.getElementById("imdb").value = "";
+    document.getElementById("audience").value = "";
+    document.getElementById("review").value = "";
 }
 
 </script>
