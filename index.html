@@ -1,169 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>MovieHub</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-    }
-
-    header {
-      background: #e50914;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-    }
-
-    .container {
-      padding: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .movie {
-      background: #222;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .movie img {
-      width: 150px;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .movie-info h2 {
-      margin-top: 0;
-    }
-
-    .rating {
-      color: #ffd700;
-      font-weight: bold;
-    }
-
-    button {
-      background: #e50914;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    button:hover {
-      background: #b20710;
-    }
-  </style>
+    <title>Movie Website</title>
 </head>
 
 <body>
 
-  <header>
-    <h1>🎬 MovieHub</h1>
-    <p>My Movie Database</p>
-  </header>
+    <h1>🎬 My Movie Website</h1>
 
-  <div class="container">
+    <h2>Movie Details</h2>
 
-    <button onclick="showMovie()">Add Movie</button>
+    <input id="title" placeholder="Movie Title"><br><br>
+    <input id="release" placeholder="Release Date"><br><br>
+    <input id="budget" placeholder="Budget"><br><br>
+    <input id="collection" placeholder="Collection"><br><br>
+    <input id="imdb" placeholder="IMDb Rating"><br><br>
+    <input id="audience" placeholder="Audience Rating"><br><br>
+    <textarea id="review" placeholder="Review"></textarea><br><br>
+
+    <button onclick="addMovie()">Add Movie</button>
+
+    <hr>
 
     <div id="movies"></div>
 
-  </div>
+    <script>
 
-  <script>
+        let movies = [];
 
-    const movies = [
-      {
-        title: "Spider-Man: No Way Home",
-        release: "16 December 2021",
-        rating: "8.2/10",
-        budget: "$200M",
-        collection: "$1.9B",
-        poster: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
-      }
-    ];
+        function addMovie() {
 
-    function displayMovies() {
+            let movie = {
+                title: document.getElementById("title").value,
+                release: document.getElementById("release").value,
+                budget: document.getElementById("budget").value,
+                collection: document.getElementById("collection").value,
+                imdb: document.getElementById("imdb").value,
+                audience: document.getElementById("audience").value,
+                review: document.getElementById("review").value
+            };
 
-      const movieContainer = document.getElementById("movies");
+            movies.push(movie);
 
-      movieContainer.innerHTML = "";
+            displayMovies();
+        }
 
-      movies.forEach(movie => {
+        function displayMovies() {
 
-        movieContainer.innerHTML += `
-          <div class="movie">
+            let output = "";
 
-            <img src="${movie.poster}" alt="${movie.title}">
+            movies.forEach((movie, index) => {
 
-            <div class="movie-info">
+                output += `
+                    <h2>${movie.title}</h2>
 
-              <h2>${movie.title}</h2>
+                    <p>Release Date: ${movie.release}</p>
+                    <p>Budget: ${movie.budget}</p>
+                    <p>Collection: ${movie.collection}</p>
+                    <p>IMDb Rating: ⭐ ${movie.imdb}</p>
+                    <p>Audience Rating: ⭐ ${movie.audience}</p>
+                    <p>Review: ${movie.review}</p>
 
-              <p>📅 Release: ${movie.release}</p>
+                    <button onclick="deleteMovie(${index})">
+                        🗑️ Delete
+                    </button>
 
-              <p class="rating">⭐ Rating: ${movie.rating}</p>
+                    <hr>
+                `;
+            });
 
-              <p>💰 Budget: ${movie.budget}</p>
+            document.getElementById("movies").innerHTML = output;
+        }
 
-              <p>🎟️ Box Office: ${movie.collection}</p>
+        function deleteMovie(index) {
 
-            </div>
+            movies.splice(index, 1);
 
-          </div>
-        `;
+            displayMovies();
+        }
 
-      });
-
-    }
-
-    function showMovie() {
-
-      const title = prompt("Movie Title:");
-
-      if (!title) return;
-
-      const release = prompt("Release Date:");
-
-      const rating = prompt("IMDb Rating:");
-
-      const budget = prompt("Budget:");
-
-      const collection = prompt("Box Office Collection:");
-
-      const poster = prompt("Poster Image URL:");
-
-      movies.push({
-        title,
-        release,
-        rating,
-        budget,
-        collection,
-        poster
-      });
-
-      displayMovies();
-    }
-
-    displayMovies();
-
-  </script>
+    </script>
 
 </body>
 </html>
