@@ -6,80 +6,51 @@
 
 <body>
 
-    <h1>🎬 My Movie Website</h1>
+<h1>🎬 Movie Website</h1>
 
-    <h2>Movie Details</h2>
+<h2>Add Movie</h2>
 
-    <input id="title" placeholder="Movie Title"><br><br>
-    <input id="release" placeholder="Release Date"><br><br>
-    <input id="budget" placeholder="Budget"><br><br>
-    <input id="collection" placeholder="Collection"><br><br>
-    <input id="imdb" placeholder="IMDb Rating"><br><br>
-    <input id="audience" placeholder="Audience Rating"><br><br>
-    <textarea id="review" placeholder="Review"></textarea><br><br>
+<input id="title" placeholder="Title"><br><br>
+<input id="release" placeholder="Release Date"><br><br>
+<input id="budget" placeholder="Budget"><br><br>
+<input id="collection" placeholder="Collection"><br><br>
+<input id="imdb" placeholder="IMDb Rating"><br><br>
+<input id="audience" placeholder="Audience Rating"><br><br>
 
-    <button onclick="addMovie()">Add Movie</button>
+<textarea id="review" placeholder="Review"></textarea>
+<br><br>
 
-    <hr>
+<button onclick="addMovie()">Add Movie</button>
 
-    <div id="movies"></div>
+<hr>
 
-    <script>
+<div id="movies"></div>
 
-        let movies = [];
+<script>
 
-        function addMovie() {
+function addMovie() {
 
-            let movie = {
-                title: document.getElementById("title").value,
-                release: document.getElementById("release").value,
-                budget: document.getElementById("budget").value,
-                collection: document.getElementById("collection").value,
-                imdb: document.getElementById("imdb").value,
-                audience: document.getElementById("audience").value,
-                review: document.getElementById("review").value
-            };
+    let movie = document.createElement("div");
 
-            movies.push(movie);
+    movie.innerHTML = `
+        <h2>${document.getElementById("title").value}</h2>
 
-            displayMovies();
-        }
+        <p>Release Date: ${document.getElementById("release").value}</p>
+        <p>Budget: ${document.getElementById("budget").value}</p>
+        <p>Collection: ${document.getElementById("collection").value}</p>
+        <p>IMDb Rating: ${document.getElementById("imdb").value}</p>
+        <p>Audience Rating: ${document.getElementById("audience").value}</p>
+        <p>Review: ${document.getElementById("review").value}</p>
 
-        function displayMovies() {
+        <button onclick="this.parentElement.remove()">Delete</button>
 
-            let output = "";
+        <hr>
+    `;
 
-            movies.forEach((movie, index) => {
+    document.getElementById("movies").appendChild(movie);
+}
 
-                output += `
-                    <h2>${movie.title}</h2>
-
-                    <p>Release Date: ${movie.release}</p>
-                    <p>Budget: ${movie.budget}</p>
-                    <p>Collection: ${movie.collection}</p>
-                    <p>IMDb Rating: ⭐ ${movie.imdb}</p>
-                    <p>Audience Rating: ⭐ ${movie.audience}</p>
-                    <p>Review: ${movie.review}</p>
-
-                    <button onclick="deleteMovie(${index})">
-                        🗑️ Delete
-                    </button>
-
-                    <hr>
-                `;
-            });
-
-            document.getElementById("movies").innerHTML = output;
-        }
-
-        function deleteMovie(index) {
-
-            movies.splice(index, 1);
-
-            displayMovies();
-        }
-
-    </script>
+</script>
 
 </body>
 </html>
